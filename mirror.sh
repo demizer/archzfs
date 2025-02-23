@@ -11,7 +11,7 @@ rm -rf "${TMPDIR}"
 mkdir -p "${OUTDIR}" "${TMPDIR}"
 
 # TODO: Update to use the upstream repository
-RELEASE_INFO="$(curl -s https://api.github.com/repos/archzfs/archzfs/releases/experimental)"
+RELEASE_INFO="$(curl -fsL https://api.github.com/repos/archzfs/archzfs/releases/tags/experimental)"
 
 readarray -t FILE_INFO < <(echo "${RELEASE_INFO}" | jq '.assets | map(.browser_download_url + "|" + .updated_at) | join("\n")' -r)  
 
